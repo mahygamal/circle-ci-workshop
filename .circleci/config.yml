@@ -1,6 +1,4 @@
-workflows:
-    version: 2.0
-    jobs:
+jobs:
       build:
         docker:
           - image: circleci/openjdk:8-jdk
@@ -18,5 +16,12 @@ workflows:
           - store_artifacts:
                 path: /code/test-results
                 destination: prefix
+workflows:
+    version: 2.0
+    build_and_test:
+    jobs:
+      - build
+      - test
+    
    
            
