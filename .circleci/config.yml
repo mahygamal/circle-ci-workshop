@@ -5,7 +5,10 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: gradle test
+      - run: gradle jar
+      - store_artifacts:
+            path: /code/test-results
+            destination: prefix
       - store_test_results:
             path: test-results
       
