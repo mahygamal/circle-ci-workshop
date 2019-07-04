@@ -21,7 +21,7 @@ workflows:
              command: gradle jar
           - store_artifacts:
                 name: publish jar
-                path: build/libs
+                path: /code/test-results
                 destination: prefix
    
            
