@@ -1,27 +1,22 @@
-version: 2.0
-jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: gradle test
-      - store_test_results:
-            path: test-results
-      
-        #  name: The First Step
-         # command: |
-          #  echo 'Hello World!'
-           # echo 'This is the delivery pipeline'
+workflows:
+    version: 2.0
+    jobs:
+      build:
+        docker:
+          - image: circleci/openjdk:8-jdk
+        steps:
+          - checkout
+          - run: gradle test
+          - store_test_results:
+                path: test-results
+      test:          
+         docker:
+          - image: circleci/openjdk:8-jdk
+        steps:
+          - checkout
+          - run: gradle jar
+          - store_artifacts:
+                path: /code/test-results
+                destination: prefix
+   
            
-version: 2.0
-jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: gradle jar
-      - store_artifacts:
-            path: /code/test-results
-            destination: prefix
